@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login / Sign Up</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+
+    .header {
+      padding: 24px;
+      text-align: center;
+      background: linear-gradient(135deg, #0052cc, #00a3ff);
+      color: #fff;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #e6e9ee;
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 14px 0;
+      cursor: pointer;
+      background: #fafbfc;
+      border: none;
+      outline: none;
+      font-weight: 600;
+      color: #5f6c7b;
+    }
+
+    .tab.active {
+      background: #fff;
+      color: #0052cc;
+      border-bottom: 3px solid #0052cc;
+    }
+
+    .form-panel {
+      padding: 28px 32px 32px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #4f5d6c;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #d8dde6;
+      border-radius: 8px;
+      font-size: 15px;
+      background: #f8fafc;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group input:focus {
+      border-color: #0052cc;
+      outline: none;
+      background: #fff;
+    }
+
+    .password-info {
+      font-size: 13px;
+      color: #657786;
+      margin-top: 6px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .actions a {
+      font-size: 13px;
+      color: #0052cc;
+      text-decoration: none;
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      background: #0052cc;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background: #0041a8;
+    }
+
+    .extra-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: #7a8a99;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Multi-Channel E-Voting</h1>
+      <p>Sign in or create an account to continue</p>
+    </div>
+    <div class="tabs">
+      <button class="tab active" id="loginTab">Login</button>
+      <button class="tab" id="signupTab">Sign Up</button>
+    </div>
+    <div class="form-panel" id="formPanel">
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginVotingId">Voting ID</label>
+          <input type="text" id="loginVotingId" name="loginVotingId" placeholder="Enter your voting ID" required />
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter your password" required />
+          <div class="password-info">Use your secure password to sign in.</div>
+        </div>
+        <div class="actions">
+          <label><input type="checkbox" /> Remember me</label>
+          <a href="#">Forgot password?</a>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+      </form>
+      <form id="signupForm" style="display:none;">
+        <div class="form-group">
+          <label for="signupName">Full name</label>
+          <input type="text" id="signupName" name="signupName" placeholder="Your full name" required />
+        </div>
+        <div class="form-group">
+          <label for="signupVotingId">Voting ID</label>
+          <input type="text" id="signupVotingId" name="signupVotingId" placeholder="Enter your voting ID" required />
+        </div>
+        <div class="form-group">
+          <label for="signupPassword">Choose a password</label>
+          <input type="password" id="signupPassword" name="signupPassword" placeholder="Create a strong password" required />
+          <div class="password-info">At least 8 characters, including letters and numbers.</div>
+        </div>
+        <div class="form-group">
+          <label for="signupConfirmPassword">Confirm password</label>
+          <input type="password" id="signupConfirmPassword" name="signupConfirmPassword" placeholder="Repeat your password" required />
+        </div>
+        <button type="submit" class="submit-button">Create Account</button>
+      </form>
+      <div class="extra-note">Secure sign in with voting ID and password for access to the voting portal.</div>
+    </div>
+  </div>
+  <script>
+    const loginTab = document.getElementById('loginTab');
+    const signupTab = document.getElementById('signupTab');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+
+    loginTab.addEventListener('click', () => {
+      loginTab.classList.add('active');
+      signupTab.classList.remove('active');
+      loginForm.style.display = 'block';
+      signupForm.style.display = 'none';
+    });
+
+    signupTab.addEventListener('click', () => {
+      signupTab.classList.add('active');
+      loginTab.classList.remove('active');
+      signupForm.style.display = 'block';
+      loginForm.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
